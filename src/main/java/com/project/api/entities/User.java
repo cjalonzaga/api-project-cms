@@ -20,14 +20,6 @@ public class User extends BaseEntity{
 
     @Basic
     @Column(
-            name = "middleName",
-            nullable = false,
-            updatable = true
-    )
-    private String middleName;
-
-    @Basic
-    @Column(
             name = "lastName",
             nullable = false,
             updatable = true
@@ -58,6 +50,14 @@ public class User extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
+    @Basic
+    @Column(
+            name = "email",
+            nullable = false,
+            updatable = true
+    )
+    private String email;
+
     public UserRole getUserRole() {
         return userRole;
     }
@@ -72,14 +72,6 @@ public class User extends BaseEntity{
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
     }
 
     public String getLastName() {
@@ -106,6 +98,14 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -113,7 +113,6 @@ public class User extends BaseEntity{
                 "user_role :" + getUserRole().getName() + "," +
                 "first_name :" + getFirstName()+"," +
                 "last_name : " + getLastName()+"," +
-                "middle_name : " + getMiddleName()+
                 "}";
     }
 }

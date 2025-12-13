@@ -3,26 +3,16 @@ package com.project.api.utils;
 import java.util.List;
 
 public class AuthResponse {
-    private String token;
     private String username;
     private List<String> roles;
-    private Long expiresIn;
+    private String expiresIn;
     private Integer status;
 
-    public AuthResponse(String token , String username , List<String> roles , Long expiresIn , Integer status) {
-        this.token = token;
+    public AuthResponse(String username , List<String> roles , String expiresIn , Integer status) {
         this.username = username;
         this.roles = roles;
         this.expiresIn = expiresIn;
         this.status = status;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public String getUsername() {
@@ -41,11 +31,11 @@ public class AuthResponse {
         this.roles = roles;
     }
 
-    public Long getExpiresIn() {
+    public String getExpiresIn() {
         return expiresIn;
     }
 
-    public void setExpiresIn(Long expiresIn) {
+    public void setExpiresIn(String expiresIn) {
         this.expiresIn = expiresIn;
     }
 

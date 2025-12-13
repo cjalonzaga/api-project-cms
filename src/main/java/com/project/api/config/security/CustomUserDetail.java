@@ -18,7 +18,7 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton( new SimpleGrantedAuthority(user.getUserRole().getName()));
+        return Collections.singleton( new SimpleGrantedAuthority( "ROLE_" +user.getUserRole().getName() ));
     }
 
     @Override
@@ -30,4 +30,28 @@ public class CustomUserDetail implements UserDetails {
     public String getUsername() {
         return user.getUsername();
     }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return user.getValid();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return user.getValid();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return user.getValid();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return user.getValid();
+    }
+
+
+
+
 }
