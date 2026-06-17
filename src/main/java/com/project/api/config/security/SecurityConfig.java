@@ -1,6 +1,6 @@
 package com.project.api.config.security;
 
-import com.project.api.config.filters.JwtFilter;
+//import com.project.api.config.filters.JwtFilter;
 import com.project.api.repositories.UserRepository;
 import com.project.api.utils.WebUtil;
 import jakarta.servlet.ServletException;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -41,30 +42,63 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private JwtFilter jwtFilter;
 
     @Autowired
     private CustomUserDetailService customUserDetailService;
 
     Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
+//    @Bean
+//    @Order(1)
+//    public SecurityFilterChain filterChain(HttpSecurity http , LogoutHandler logoutHandler) throws Exception {
+//        final JwtFilter jwtFilter = new JwtFilter();
+//
+//        return http.securityMatcher("/api/**")
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .cors((corsSource) -> corsSource.configurationSource( corsConfigurationSource() ))
+//                .authorizeHttpRequests((authorizeHttpRequests) ->
+//                        authorizeHttpRequests.requestMatchers("/api/auth", "/api/user/signup")
+//                        .permitAll().anyRequest().authenticated()
+//                )
+//                .logout( logout ->
+//                        logout.logoutUrl("/api/user/logout").deleteCookies("authToken")
+//                        .logoutSuccessHandler( logoutHandler )
+//                )
+//                .sessionManagement( (session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .authenticationProvider(authProvider())
+//                .addFilterBefore(jwtFilter , UsernamePasswordAuthenticationFilter.class)
+//                .build();
+//    }
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http , LogoutHandler logoutHandler) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
-                .cors((corsSource) -> corsSource.configurationSource( corsConfigurationSource() ))
+    public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception {
+        http
                 .authorizeHttpRequests((authorizeHttpRequests) ->
-                        authorizeHttpRequests.requestMatchers("/api/auth", "/api/user/signup")
-                        .permitAll().anyRequest().authenticated()
+                    authorizeHttpRequests
+                            .requestMatchers(HttpMethod.GET, "/admin/login", "/signup", "/ajax/**",
+                                    "/signup/**", "/css/**", "/js/**", "/vendors/**", "/assets/**", "/images/**", "/uploads/**").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/processLogin", "/signup/**").permitAll()
+                            .anyRequest()
+                            .authenticated()
+
                 )
-                .logout( logout ->
-                        logout.logoutUrl("/api/user/logout").deleteCookies("authToken")
-                        .logoutSuccessHandler( logoutHandler )
-                )
-                .sessionManagement( (session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authProvider())
-                .addFilterBefore(jwtFilter , UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .formLogin( (formLogin) ->
+                        formLogin
+                                .loginPage("/admin/login")
+                                .loginProcessingUrl("/processLogin")
+                                .defaultSuccessUrl("/dashboard", true)
+                                .failureUrl("/admin/login?failed")
+                                .permitAll()
+                ).logout( (logout) ->
+                        logout
+                                .deleteCookies("JSESSIONID")
+                                .invalidateHttpSession(true)
+                                .logoutUrl("/admin/processLogout")
+                                .logoutSuccessUrl("/admin/login")
+                                .permitAll()
+                );
+
+        return http.build();
     }
 
     @Bean
@@ -90,6 +124,7 @@ public class SecurityConfig {
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);
+        logger.info("CorsConfig data : {} ", source.toString());
         return source;
     }
 

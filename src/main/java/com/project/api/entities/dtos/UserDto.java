@@ -1,6 +1,11 @@
 package com.project.api.entities.dtos;
 
+import com.project.api.enums.UserRole;
+
 public class UserDto {
+
+    private Long id;
+
     private String firstName;
 
     private String middleName;
@@ -12,6 +17,8 @@ public class UserDto {
     private String password;
 
     private String email;
+
+    private UserRole userRole;
 
     public String getFirstName() {
         return firstName;
@@ -59,5 +66,21 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

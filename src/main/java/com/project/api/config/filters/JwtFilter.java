@@ -1,5 +1,6 @@
 package com.project.api.config.filters;
 
+import com.project.api.admin.controller.LoginController;
 import com.project.api.config.security.CustomUserDetail;
 import com.project.api.config.security.CustomUserDetailService;
 import com.project.api.utils.JwtUtil;
@@ -9,6 +10,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +27,8 @@ import java.io.IOException;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
+    Logger logger = LoggerFactory.getLogger(JwtFilter.class);
+
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -33,7 +38,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try{
-
+            logger.info("JWT FILTER: " + request.getRequestURI());
             String jwtCooke = WebUtil.getCookie(request , "authToken");
             if(jwtCooke != null) {
 
@@ -63,22 +68,22 @@ public class JwtFilter extends OncePerRequestFilter {
             response.setContentType("application/json");
             response.getWriter().write("{\"error\":\"Token expired\"}");
 
+            logger.info("JWT FILTER: " + request.getRequestURI());
+
             /*TODO find a better way to handle expired token , maybe implement a refresh token*/
         }
     }
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException{
-        boolean isRequestAllowed = false;
+        boolean isRequestAllowed = request.getRequestURI().startsWith("/api/auth");
 
-        if(request.getRequestURI().startsWith("/api/auth")){
-            isRequestAllowed = true;
-        }
+        String path = request.getServletPath();
 
-        if(request.getRequestURI().startsWith("/api/user/signup")){
-            isRequestAllowed = true;
-        }
+        //        if(request.getRequestURI().startsWith("/api/user/signup")){
+//            isRequestAllowed = true;
+//        }
 
-        return isRequestAllowed;
+        return  request.getRequestURI().startsWith("/api/auth") || request.getRequestURI().startsWith("/api/user/signup");
     }
 }

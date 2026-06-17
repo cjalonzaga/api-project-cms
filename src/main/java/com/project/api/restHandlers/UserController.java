@@ -3,6 +3,7 @@ package com.project.api.restHandlers;
 import com.project.api.config.security.CustomUserDetail;
 import com.project.api.entities.User;
 import com.project.api.entities.dtos.UserDto;
+import com.project.api.enums.UserRole;
 import com.project.api.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ public class UserController {
 
     @PostMapping("user/signup")
     public UserDto create(@RequestBody UserDto user){
+
         return  userService.create( user );
     }
 
@@ -45,6 +47,10 @@ public class UserController {
         return ResponseEntity.ok(Boolean.TRUE);
     }
 
+    @GetMapping("user/getUserRole")
+    public ResponseEntity< UserRole[] > getUserRole(){
+        return ResponseEntity.ok( userService.getUserTypes() );
+    }
 //    @PostMapping("/user/logout")
 //    public ResponseEntity<?> signIn(HttpServletRequest request, HttpServletResponse response){
 //        ResponseCookie cookie = ResponseCookie.from("authToken", null)

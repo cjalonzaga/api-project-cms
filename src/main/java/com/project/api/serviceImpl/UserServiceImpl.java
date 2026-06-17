@@ -6,13 +6,16 @@ import com.project.api.entities.mappers.UserMapper;
 import com.project.api.enums.UserRole;
 import com.project.api.repositories.UserRepository;
 import com.project.api.services.UserService;
+import org.hibernate.usertype.UserType;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -46,4 +49,15 @@ public class UserServiceImpl extends UserMapper implements UserService {
     public List<UserDto> getAll() {
         return toDtoList(userRepository.findAll());
     }
+
+    @Override
+    public UserDto update(UserDto user) {
+        return null;
+    }
+
+    @Override
+    public UserRole[] getUserTypes() {
+        return UserRole.values();
+    }
+
 }

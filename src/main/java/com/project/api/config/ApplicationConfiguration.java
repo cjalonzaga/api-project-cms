@@ -14,13 +14,4 @@ public class ApplicationConfiguration {
         return new ModelMapper();
     }
 
-//    @Bean
-//    public TomcatContextCustomizer sameSiteCookieConfig(){
-//        return context -> {
-//            Rfc6265CookieProcessor processor = new Rfc6265CookieProcessor();
-//            processor.setSameSiteCookies("Strict");
-//            context.setCookieProcessor(processor);
-//        };
-//    }
-
 }

@@ -9,6 +9,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.Rfc6265CookieProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -41,8 +43,12 @@ public class AuthenticationController {
     @Autowired
     private AppConfigProperties appConfigProperties;
 
+    private  static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+
     @PostMapping("/auth")
     public ResponseEntity<?> signIn(@RequestBody AuthRequest authRequest , HttpServletResponse response){
+        logger.info("Authentication Start : {}" , authRequest.getUsername());
+        logger.info("AUTH TRIGGERED -------------> ");
         try{
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
@@ -66,7 +72,7 @@ public class AuthenticationController {
             List<String> roles = user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
             return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(user.getUsername() , roles, date.toString() , HttpStatus.OK.value()));
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
             throw new BadCredentialsException("Invalid login credentials.");
         }
     }
