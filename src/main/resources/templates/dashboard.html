@@ -18,10 +18,10 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="row">
-                        <div class="col-3" th:each="section :${sections}">
-                          <div class="border-start border-start-4 border-start-info px-3 mb-3"><small class="text-medium-emphasis">[[${section.name}]]</small>
-                            <div class="fs-5" th:each=" m : ${sect}">
-                            	<span th:if="${section.id == m.key}">Total Students: [[${m.value}]]</span>
+                        <div class="col-3" >
+                          <div class="border-start border-start-4 border-start-info px-3 mb-3"><small class="text-medium-emphasis"></small>
+                            <div class="fs-5">
+                            	<span>Total Students: </span>
                             </div>
                           </div>
                         </div>
@@ -38,8 +38,8 @@
                     <div class="col-sm-12">
                       <div class="row">
                      		<div class="fs-2 mb-3">Recent Tasks</div>
-                     		<div class="col-3" th:each="sum , iter : ${summary}">
-                     			<canvas th:attr="id='pie'+${iter.index}"></canvas>
+                     		<div class="col-3">
+                     			<canvas></canvas>
                      		</div>
                       </div>
                     </div>
@@ -59,7 +59,7 @@
     
     <footer th:replace="~{includes/footer :: footer}"></footer>
     
-    <script>
+    <!--<script>
     	const data = `[[${summary}]]`;
     	let summary = JSON.parse(data.replace(/&quot;/g,'"'));
     	const labels = ["Total Submitted", "Total Unsubmitted"];
@@ -88,6 +88,6 @@
   			  }
   			});
   		});
-    </script>
+    </script> -->
 </body>
 </html>

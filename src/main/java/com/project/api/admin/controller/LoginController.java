@@ -19,4 +19,10 @@ public class LoginController {
         System.out.println("Triggered to -------------------> ");
         return "login";
     }
+
+    @PostMapping("/processLogin")
+    public String login2(Model model){
+        System.out.println("Triggered to 2-------------------> ");
+        return "dashboard";
+    }
 }
