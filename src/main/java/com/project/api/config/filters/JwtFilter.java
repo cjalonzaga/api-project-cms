@@ -37,8 +37,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        logger.info("40 : JwtFilter");
         try{
+
             String jwtCooke = WebUtil.getCookie(request , "authToken");
+
             if(jwtCooke != null) {
 
                 String authHeader = request.getHeader("Authorization");
@@ -62,8 +65,8 @@ public class JwtFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.getWriter().write("{\"error\":\"Token expired\"}");
-
-            logger.info("JWT FILTER: " + request.getRequestURI());
+            logger.info(ex.getMessage());
+            logger.info("71: JWT FILTER: " + request.getRequestURI());
 
             /*TODO find a better way to handle expired token , maybe implement a refresh token*/
         }
@@ -72,13 +75,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException{
         boolean isRequestAllowed = request.getRequestURI().startsWith("/api/auth");
-
         String path = request.getServletPath();
-
-        //        if(request.getRequestURI().startsWith("/api/user/signup")){
-//            isRequestAllowed = true;
-//        }
-
         return  request.getRequestURI().startsWith("/api/auth") || request.getRequestURI().startsWith("/api/user/signup");
     }
 }

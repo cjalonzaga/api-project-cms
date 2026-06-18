@@ -42,8 +42,8 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-
+    @Autowired
+    private JwtFilter jwtFilter;
     @Autowired
     private CustomUserDetailService customUserDetailService;
 
@@ -52,7 +52,6 @@ public class SecurityConfig {
     @Bean
     @Order(1)
     public SecurityFilterChain filterChain(HttpSecurity http , LogoutHandler logoutHandler) throws Exception {
-        final JwtFilter jwtFilter = new JwtFilter();
 
         return http.securityMatcher("/api/**")
                 .csrf(AbstractHttpConfigurer::disable)
@@ -96,7 +95,7 @@ public class SecurityConfig {
                         logout
                                 .deleteCookies("JSESSIONID")
                                 .invalidateHttpSession(true)
-                                .logoutUrl("/admin/processLogout")
+                                .logoutUrl("/processLogout")
                                 .logoutSuccessUrl("/admin/login")
                                 .permitAll()
                 );
