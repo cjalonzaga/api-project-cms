@@ -14,4 +14,8 @@ public class ProductController {
         return "manage/products/products";
     }
 
+    @GetMapping("/add-new-product")
+    public String addNewProduct(Model model){
+        return "manage/products/add-new-product";
+    }
 }
