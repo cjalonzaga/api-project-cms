@@ -19,6 +19,7 @@
     <link href="/css/examples.css" rel="stylesheet">
     <link href="/css/custom.css" rel="stylesheet">
     <link href="/css/font-awesome/all.min.css" rel="stylesheet">
+    <link href="/css/products-custom.css" rel="stylesheet">
 	
 	<script src="/vendors/quill/quill.js"></script>
 	<link rel="stylesheet" href="/vendors/quill/quill.snow.css"/>
@@ -52,6 +53,9 @@
 	                    <div class="card-body">
 							<h6>Product Data</h6>
 							<hr>
+							<div th:replace="~{manage/products/newproduct-includes/product-details :: product-details }">
+							
+							</div>
 	                    </div>
 	                </div>
 					
@@ -67,7 +71,9 @@
 	            </div>
 				
 				<div class="col-md-3">
+					<div th:replace="~{manage/products/newproduct-includes/product-meta :: product-meta }">
 					
+					</div>
 				</div>
         	</div>
         </div>

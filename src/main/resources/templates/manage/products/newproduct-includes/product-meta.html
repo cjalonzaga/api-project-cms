@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<div class="accordion" id="productMetaBoxes" th:fragment="product-meta">
+
+      <!-- PUBLISH -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPublish">
+          <button class="accordion-button"
+                  type="button"
+                  data-coreui-toggle="collapse"
+                  data-coreui-target="#collapsePublish"
+                  aria-expanded="true">
+            Publish
+          </button>
+        </h2>
+
+        <div id="collapsePublish"
+             class="accordion-collapse collapse show"
+             data-coreui-parent="#productMetaBoxes">
+
+          <div class="accordion-body">
+
+            <div class="mb-2">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option>Draft</option>
+                <option>Published</option>
+              </select>
+            </div>
+
+            <button class="btn btn-primary w-100">
+              Save Product
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCT IMAGE -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingImage">
+          <button class="accordion-button collapsed"
+                  type="button"
+                  data-coreui-toggle="collapse"
+                  data-coreui-target="#collapseImage">
+            Product Image
+          </button>
+        </h2>
+
+        <div id="collapseImage"
+             class="accordion-collapse collapse"
+             data-coreui-parent="#productMetaBoxes">
+
+          <div class="accordion-body text-center">
+
+            <div class="border p-3 mb-2">
+              <small>No image selected</small>
+            </div>
+
+            <button class="btn btn-outline-primary btn-sm w-100">
+              Set Product Image
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- GALLERY -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingGallery">
+          <button class="accordion-button collapsed"
+                  type="button"
+                  data-coreui-toggle="collapse"
+                  data-coreui-target="#collapseGallery">
+            Product Gallery
+          </button>
+        </h2>
+
+        <div id="collapseGallery"
+             class="accordion-collapse collapse"
+             data-coreui-parent="#productMetaBoxes">
+
+          <div class="accordion-body">
+
+            <div class="border p-2 mb-2 text-center">
+              <small>No gallery images</small>
+            </div>
+
+            <button class="btn btn-outline-secondary btn-sm w-100">
+              Add Gallery Images
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCategories">
+          <button class="accordion-button collapsed"
+                  type="button"
+                  data-coreui-toggle="collapse"
+                  data-coreui-target="#collapseCategories">
+            Categories
+          </button>
+        </h2>
+
+        <div id="collapseCategories"
+             class="accordion-collapse collapse"
+             data-coreui-parent="#productMetaBoxes">
+
+          <div class="accordion-body">
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cat1">
+              <label class="form-check-label" for="cat1">Clothing</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cat2">
+              <label class="form-check-label" for="cat2">Accessories</label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TAGS -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTags">
+          <button class="accordion-button collapsed"
+                  type="button"
+                  data-coreui-toggle="collapse"
+                  data-coreui-target="#collapseTags">
+            Product Tags
+          </button>
+        </h2>
+
+        <div id="collapseTags"
+             class="accordion-collapse collapse"
+             data-coreui-parent="#productMetaBoxes">
+
+          <div class="accordion-body">
+
+            <input class="form-control mb-2" placeholder="Add new tag">
+            <button class="btn btn-outline-secondary btn-sm w-100">
+              Add Tag
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+</body>
+</html>

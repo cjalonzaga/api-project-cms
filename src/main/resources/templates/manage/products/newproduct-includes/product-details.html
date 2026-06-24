@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<div class="row" th:fragment="product-details">
+		<div class="col-3 border-end">
+	        <ul class="nav flex-column nav-pills" id="productTabs" role="tablist">
+	          <li class="nav-item">
+	            <a class="nav-link active"
+	               id="general-tab"
+	               data-coreui-toggle="tab"
+	               href="#general"
+	               role="tab">
+	              General
+	            </a>
+	          </li>
+	
+	          <li class="nav-item">
+	            <a class="nav-link"
+	               id="inventory-tab"
+	               data-coreui-toggle="tab"
+	               href="#inventory"
+	               role="tab">
+	              Inventory
+	            </a>
+	          </li>
+	
+	          <li class="nav-item">
+	            <a class="nav-link"
+	               id="shipping-tab"
+	               data-coreui-toggle="tab"
+	               href="#shipping"
+	               role="tab">
+	              Shipping
+	            </a>
+	          </li>
+	
+	          <li class="nav-item">
+	            <a class="nav-link"
+	               id="linked-tab"
+	               data-coreui-toggle="tab"
+	               href="#linked"
+	               role="tab">
+	              Linked Products
+	            </a>
+	          </li>
+	
+	        </ul>
+	    </div>
+	    
+	    <div class="col-9">
+
+        <div class="tab-content" id="productTabsContent">
+
+          <div class="tab-pane fade show active"
+               id="general"
+               role="tabpanel">
+
+            <h5>General</h5>
+            <input class="form-control mb-2" placeholder="Regular price">
+            <input class="form-control" placeholder="Sale price">
+
+          </div>
+
+          <div class="tab-pane fade"
+               id="inventory"
+               role="tabpanel">
+
+            <h5>Inventory</h5>
+            <input class="form-control" placeholder="SKU">
+          </div>
+
+          <div class="tab-pane fade"
+               id="shipping"
+               role="tabpanel">
+
+            <h5>Shipping</h5>
+            <input class="form-control" placeholder="Weight">
+          </div>
+
+          <div class="tab-pane fade"
+               id="linked"
+               role="tabpanel">
+
+            <h5>Linked Products</h5>
+          </div>
+
+        </div>
+
+      </div>
+	    
+	</div>
+</body>
+</html>

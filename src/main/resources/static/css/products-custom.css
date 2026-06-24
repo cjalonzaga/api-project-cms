@@ -1,0 +1,19 @@
+.nav-pills .nav-link {
+  border-radius: 0;
+  text-align: left;
+  color: #333;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #2271b1;
+  color: #fff;
+}
+
+#productMetaBoxes .accordion-body {
+  padding: 10px;
+}
+
+#productMetaBoxes .accordion-item {
+  border: 1px solid #dcdcde;
+  margin-bottom: 8px;
+}
