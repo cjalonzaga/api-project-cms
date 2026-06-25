@@ -2,6 +2,7 @@ package com.project.api.entities;
 
 import java.util.Set;
 
+import com.project.api.enums.ProductStatus;
 import com.project.api.listeners.AuditEntityListener;
 import jakarta.persistence.*;
 
@@ -41,6 +42,11 @@ public class Product extends BaseEntity{
     @Basic
     @Column(name = "short_description" , columnDefinition = "TEXT")
     private String shortDescription;
+    
+    @Basic
+    @Column(name="status")
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
 
     public void setName(String name) {
         this.name = name;

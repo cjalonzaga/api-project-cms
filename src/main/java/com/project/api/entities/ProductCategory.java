@@ -1,9 +1,5 @@
 package com.project.api.entities;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-import org.hibernate.annotations.Where;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.api.listeners.AuditEntityListener;
 
