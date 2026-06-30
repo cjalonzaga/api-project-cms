@@ -32,8 +32,8 @@ public class CategoryMapper extends AbstractMapper<CategoryDto , Category>{
 
 	@Override
 	public List<Category> toEntityList(List<CategoryDto> dtoList) {
-		// TODO Auto-generated method stub
-		return null;
+		return dtoList.stream().map( obj ->
+        modelMapper.map(obj, Category.class)).collect(Collectors.toList());
 	}
 
 }

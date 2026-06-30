@@ -39,7 +39,8 @@ public class UserMapper extends AbstractMapper<UserDto , User> {
 
     @Override
     public List<User> toEntityList(List<UserDto> dtoList) {
-        return null;
+    	return dtoList.stream().map( user ->
+        modelMapper.map(user, User.class)).collect(Collectors.toList());
     }
 
 }

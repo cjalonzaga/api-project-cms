@@ -1,13 +1,12 @@
 package com.project.api.entities.mappers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
 import com.project.api.entities.Product;
-import com.project.api.entities.User;
 import com.project.api.entities.dtos.ProductDto;
-import com.project.api.entities.dtos.UserDto;
 
 public class ProductMapper extends AbstractMapper<ProductDto , Product>{
 
@@ -27,14 +26,14 @@ public class ProductMapper extends AbstractMapper<ProductDto , Product>{
 
 	@Override
 	public List<ProductDto> toDtoList(List<Product> entityList) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityList.stream().map( obj ->
+        modelMapper.map(obj, ProductDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Product> toEntityList(List<ProductDto> dtoList) {
-		// TODO Auto-generated method stub
-		return null;
+		return dtoList.stream().map( obj ->
+        modelMapper.map(obj, Product.class)).collect(Collectors.toList());
 	}
 
 }
