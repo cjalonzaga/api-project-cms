@@ -28,8 +28,7 @@ public class ProductController {
     
     @PostMapping("/create")
     public String createProduct(@ModelAttribute ProductDto dto) {
-    	System.out.println(HtmlSanitizerUtil.sanitize(dto.getDescription() )+ " ---> ");
-    	System.out.println(HtmlSanitizerUtil.sanitize(dto.getShortDescription() )+ " ---> ");
+    	
     	return "redirect:/admin/product?id="+1;
     }
     

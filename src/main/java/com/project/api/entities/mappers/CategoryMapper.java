@@ -11,29 +11,29 @@ import com.project.api.entities.dtos.CategoryDto;
 public class CategoryMapper extends AbstractMapper<CategoryDto , Category>{
 
 	protected CategoryMapper(ModelMapper modelMapper) {
-		super(modelMapper);
+		super(modelMapper , CategoryDto.class , Category.class);
 	}
 
-	@Override
-	public CategoryDto toDto(Category entity) {
-		return modelMapper.map(entity , CategoryDto.class);
-	}
-
-	@Override
-	public Category toEntity(CategoryDto dto) {
-		return modelMapper.map(dto , Category.class);
-	}
-
-	@Override
-	public List<CategoryDto> toDtoList(List<Category> entityList) {
-		return entityList.stream().map( obj ->
-        modelMapper.map(obj, CategoryDto.class)).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<Category> toEntityList(List<CategoryDto> dtoList) {
-		return dtoList.stream().map( obj ->
-        modelMapper.map(obj, Category.class)).collect(Collectors.toList());
-	}
+//	@Override
+//	public CategoryDto toDto(Category entity) {
+//		return modelMapper.map(entity , CategoryDto.class);
+//	}
+//
+//	@Override
+//	public Category toEntity(CategoryDto dto) {
+//		return modelMapper.map(dto , Category.class);
+//	}
+//
+//	@Override
+//	public List<CategoryDto> toDtoList(List<Category> entityList) {
+//		return entityList.stream().map( obj ->
+//        modelMapper.map(obj, CategoryDto.class)).collect(Collectors.toList());
+//	}
+//
+//	@Override
+//	public List<Category> toEntityList(List<CategoryDto> dtoList) {
+//		return dtoList.stream().map( obj ->
+//        modelMapper.map(obj, Category.class)).collect(Collectors.toList());
+//	}
 
 }

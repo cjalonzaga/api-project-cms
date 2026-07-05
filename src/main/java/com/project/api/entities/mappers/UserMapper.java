@@ -4,14 +4,16 @@ import com.project.api.entities.User;
 import com.project.api.entities.dtos.UserDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class UserMapper extends AbstractMapper<UserDto , User> {
 
     protected UserMapper(ModelMapper modelMapper) {
-        super(modelMapper);
+        super(modelMapper , UserDto.class , User.class);
         modelMapper.addMappings(skipProperty);
     }
 
@@ -21,26 +23,5 @@ public class UserMapper extends AbstractMapper<UserDto , User> {
         }
     };
 
-    @Override
-    public UserDto toDto(User entity) {
-        return modelMapper.map(entity , UserDto.class);
-    }
-
-    @Override
-    public User toEntity(UserDto dto) {
-        return modelMapper.map(dto , User.class);
-    }
-
-    @Override
-    public List<UserDto> toDtoList(List<User> entityList) {
-        return entityList.stream().map( user ->
-                modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<User> toEntityList(List<UserDto> dtoList) {
-    	return dtoList.stream().map( user ->
-        modelMapper.map(user, User.class)).collect(Collectors.toList());
-    }
 
 }

@@ -32,7 +32,7 @@
       
       <div th:replace="~{includes/subheader :: subheader}"></div>
      
-     <form method="post" th:object="${product}" th:action="@{/admin/create}">
+     <form method="post" th:object="${product}" th:action="@{/admin/create}" id="productform">
       
       <div class="body flex-grow-1 px-3">
         	<div class="row">
@@ -106,8 +106,7 @@
 		
 		const textarea2 = document.getElementById('shortdescription');
 		quill2.root.innerHTML = textarea2.value;
-
-		document.querySelector('form').addEventListener('submit', function () {
+		document.querySelector('#productform').addEventListener('submit', function (e) {
 		    textarea.value = quill.root.innerHTML;
 		    textarea2.value = quill2.root.innerHTML;
 		});
