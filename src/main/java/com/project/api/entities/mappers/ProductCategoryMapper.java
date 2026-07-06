@@ -14,27 +14,4 @@ public class ProductCategoryMapper extends AbstractMapper<ProductCategoryDto , P
 	protected ProductCategoryMapper(ModelMapper modelMapper) {
 		super(modelMapper , ProductCategoryDto.class , ProductCategory.class);
 	}
-
-//	@Override
-//	public ProductCategoryDto toDto(ProductCategory entity) {
-//		return modelMapper.map(entity , ProductCategoryDto.class);
-//	}
-//
-//	@Override
-//	public ProductCategory toEntity(ProductCategoryDto dto) {
-//		return modelMapper.map(dto , ProductCategory.class);
-//	}
-//
-//	@Override
-//	public List<ProductCategoryDto> toDtoList(List<ProductCategory> entityList) {
-//		return entityList.stream().map( obj ->
-//        modelMapper.map(obj, ProductCategoryDto.class)).collect(Collectors.toList());
-//	}
-//
-//	@Override
-//	public List<ProductCategory> toEntityList(List<ProductCategoryDto> dtoList) {
-//		return dtoList.stream().map( obj ->
-//        modelMapper.map(obj, ProductCategory.class)).collect(Collectors.toList());
-//	}
-
 }
