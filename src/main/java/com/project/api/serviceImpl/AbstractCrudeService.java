@@ -10,12 +10,7 @@ public abstract class AbstractCrudeService<E , ID> implements CrudService<E , ID
 	protected abstract JpaRepository<E, ID> repository();
 	
 	@Override
-	public E create(E entity) {
-		return repository().save(entity);
-	}
-
-	@Override
-	public E update(ID id, E entity) {
+	public E save(E entity) {
 		return repository().save(entity);
 	}
 

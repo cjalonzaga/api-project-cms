@@ -45,7 +45,7 @@ public class UserServiceImpl extends AbstractCrudeService<User , Long > implemen
         entity.setCreatedOn(LocalDateTime.now());
         entity.setUpdatedOn(LocalDateTime.now());
         entity.setUserRole(UserRole.ADMIN);
-        return mapper.toDto( userRepository.save(entity) );
+        return mapper.toDto( save(entity) );
     }
 
     @Override

@@ -61,9 +61,24 @@
                role="tabpanel">
 
             <h5>General</h5>
-            <input class="form-control mb-2" placeholder="Regular price" required>
-            <input class="form-control" placeholder="Sale price" required>
-
+            <div class="row g-3 align-items-center">
+			  <div class="col-md-2">
+			    <label for="regularPrice" class="col-form-label">Regular Price</label>
+			  </div>
+			  <div class="col-auto">
+			    <input class="form-control mb-2" placeholder="Regular price" required th:field="*{price}">
+			  </div>
+			</div>
+			
+			<div class="row g-3 align-items-center">
+			  <div class="col-md-2">
+			    <label for="salePrice" class="col-form-label">Sales Price</label>
+			  </div>
+			  <div class="col-auto">
+			    <input class="form-control" placeholder="Sale price" required>
+			  </div>
+			</div>
+			
           </div>
 
           <div class="tab-pane fade"
@@ -71,9 +86,24 @@
                role="tabpanel">
 
             <h5>Inventory</h5>
-            <input type="text" class="form-control mb-2" placeholder="SKU" required>
+            <div class="row g-3 align-items-center">
+			  <div class="col-md-2">
+			    <label for="sku" class="col-form-label">SKU</label>
+			  </div>
+			  <div class="col-auto">
+			    <input type="text" class="form-control mb-2" placeholder="SKU" required>
+			  </div>
+			</div>
             
-            <input type="number" class="form-control" placeholder="Stocks" required>
+            <div class="row g-3 align-items-center">
+			  <div class="col-md-2">
+			    <label for="stock" class="col-form-label">Stocks</label>
+			  </div>
+			  <div class="col-auto">
+			    <input type="number" class="form-control" placeholder="Stocks" required>
+			  </div>
+			</div>
+            
           </div>
 
           <div class="tab-pane fade"
@@ -81,7 +111,31 @@
                role="tabpanel">
 
             <h5>Shipping</h5>
-            <input class="form-control" placeholder="Weight">
+            
+            <div class="row g-3 align-items-center">
+			  <div class="col-md-2">
+			    <label for="weight" class="col-form-label">Stocks</label>
+			  </div>
+			  <div class="col-auto">
+			    <input class="form-control mb-2" placeholder="Weight">
+			  </div>
+			</div>
+			
+			<div class="row g-3 align-items-center">
+			  <div class="col-md-2">
+			    <label for="weight" class="col-form-label">Dimension</label>
+			  </div>
+			  <div class="col-auto">
+			    <input type="number"  class="form-control" placeholder="L">
+			  </div>
+			  <div class="col-auto">
+			    <input type="number"  class="form-control" placeholder="W">
+			  </div>
+			  <div class="col-auto">
+			    <input type="number" class="form-control" placeholder="H">
+			  </div>
+			</div>
+			
           </div>
 
           <div class="tab-pane fade"
