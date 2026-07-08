@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.api.entities.dtos.ProductDto;
+import com.project.api.services.ProductService;
 import com.project.api.utils.HtmlSanitizerUtil;
 
 @Controller
 @RequestMapping("/admin")
 public class ProductController {
+	
+	private final ProductService productService;
+	
+	public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
 
     @GetMapping("/products")
     public String products(Model model){
@@ -29,12 +36,16 @@ public class ProductController {
     @PostMapping("/create")
     public String createProduct(@ModelAttribute ProductDto dto) {
     	
-    	return "redirect:/admin/product?id="+1;
+    	ProductDto product = productService.createProduct(dto);
+    	
+    	return "redirect:/admin/product?id="+product.getId();
     }
     
     @GetMapping("/product")
     public String edit(Model model ,@RequestParam(required = false) Long id) {
-    	model.addAttribute("product", new ProductDto());	
+    	if(id != null) {
+    		model.addAttribute("product", productService.find(id));
+    	}	
     	return "manage/products/add-new-product";
     }
 }

@@ -24,10 +24,10 @@
 
             <div class="mb-2">
               <label class="form-label">Status</label>
-              <select class="form-select">
-              	<option th:each="status : ${productStatusEnum}" 
-			            th:value="${status}" 
-			            th:text="${status.name}">
+              <select class="form-select" th:field="*{status}">
+              	<option th:each="stat : ${productStatusEnum}" 
+			            th:value="stat" 
+			            th:text="${stat.name}">
 			    </option>
               </select>
             </div>

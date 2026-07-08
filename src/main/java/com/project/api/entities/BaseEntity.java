@@ -24,7 +24,7 @@ public abstract class BaseEntity {
     @Column(
             name = "createdOn",
             nullable = false,
-            updatable = true
+            updatable = false
     )
     private LocalDateTime createdOn;
 
@@ -75,5 +75,19 @@ public abstract class BaseEntity {
 
     public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
+    }
+    
+    @PrePersist
+    protected void onCreate() {
+        if (createdOn == null) {
+            createdOn = LocalDateTime.now();
+            updatedOn = LocalDateTime.now();
+            isValid = true;
+        }
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+    	updatedOn = LocalDateTime.now();
     }
 }
