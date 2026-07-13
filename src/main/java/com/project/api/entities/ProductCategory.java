@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = ProductCategory.table_name)
 @EntityListeners(AuditEntityListener.class)
 public class ProductCategory extends BaseEntity{
-	private final static String table_name = "product_category";
+	public final static String table_name = "product_category";
 	
 	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id")
