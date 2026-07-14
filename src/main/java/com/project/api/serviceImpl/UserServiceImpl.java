@@ -40,11 +40,7 @@ public class UserServiceImpl extends AbstractCrudeService<User , Long > implemen
             throw  new ResponseStatusException(HttpStatus.CONFLICT , "User with username " + user.getUsername() + " already exist! ");
         }
         User entity = mapper.toEntity(user);
-        entity.setValid(true);
         entity.setPassword( passwordEncoder.encode( user.getPassword() ) );
-        entity.setCreatedOn(LocalDateTime.now());
-        entity.setUpdatedOn(LocalDateTime.now());
-        entity.setUserRole(UserRole.ADMIN);
         return mapper.toDto( save(entity) );
     }
 

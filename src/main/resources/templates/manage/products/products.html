@@ -29,6 +29,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <tr th:each="product : ${productlist.content}">
+                        	<th>img</th>
+                        	<td th:text="${product.name}">Polo <br>Edit | Duplicate | Trash  </td>
+                        	<td>-</td>
+                        	<td>In Stock</td>
+                        	<th th:text="${product.price}">$345</th>
+                        	<td>T-Shirts</td>
+                            <td>Polo</td>
+                            <td>Blue</td>
+							<td>Published <br> 09/01/2026 at 3:34 pm</td>
+                        </tr>
                         <tr>
                             <th>img</th>
                             <td>Polo <br>Edit | Duplicate | Trash  </td>

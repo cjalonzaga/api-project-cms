@@ -1,5 +1,7 @@
 package com.project.api.admin.controller.manage.products;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,13 @@ public class ProductController {
 	}
 
     @GetMapping("/products")
-    public String products(Model model){
+    public String products( 
+    		@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size, 
+            Model model){
+    	Page<ProductDto> productDtoList = productService.findAllWithPaging(PageRequest.of(page, size));
+    	model.addAttribute("productlist" , productDtoList);
+    	
         return "manage/products/products";
     }
 

@@ -3,9 +3,12 @@ package com.project.api.serviceImpl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.project.api.entities.BaseEntity;
 import com.project.api.services.CrudService;
 
-public abstract class AbstractCrudeService<E , ID> implements CrudService<E , ID>{
+import jakarta.persistence.EntityNotFoundException;
+
+public abstract class AbstractCrudeService<E extends BaseEntity, ID> implements CrudService<E , ID>{
 
 	protected abstract JpaRepository<E, ID> repository();
 	
@@ -16,7 +19,9 @@ public abstract class AbstractCrudeService<E , ID> implements CrudService<E , ID
 
 	@Override
 	public void delete(ID id) {
-		repository().deleteById(id);
+		E entity = repository().findById(id).orElseThrow( () -> new EntityNotFoundException("Entity not found") );
+		entity.setValid(false);
+		repository().save(entity);
 	}
 
 	@Override

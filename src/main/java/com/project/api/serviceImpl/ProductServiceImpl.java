@@ -1,5 +1,7 @@
 package com.project.api.serviceImpl;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,12 @@ public class ProductServiceImpl extends AbstractCrudeService<Product , Long > im
 	public ProductDto find(Long id) {
 	
 		return  mapper.toDto( findById(id) );
+	}
+
+	@Override
+	public Page<ProductDto> findAllWithPaging(Pageable page) {
+		
+		return productRepository.findByIsValidTrue(page).map(mapper::toDto);
 	}
 
 }
