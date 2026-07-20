@@ -44,6 +44,11 @@ public class ProductServiceImpl extends AbstractCrudeService<Product , Long > im
 	@Override
 	public Page<ProductDto> findAllWithPaging(Pageable page) {
 		
+	    Page<ProductDto> dtoPage = productRepository.findByIsValidTrue(page).map(mapper::toDto);
+
+	    // 2. Check if the mapper successfully copied it over:
+	    System.out.println("DTO status: " + dtoPage.getContent().get(0).getStatus());
+		
 		return productRepository.findByIsValidTrue(page).map(mapper::toDto);
 	}
 

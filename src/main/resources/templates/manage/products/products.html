@@ -38,7 +38,10 @@
                         	<td>T-Shirts</td>
                             <td>Polo</td>
                             <td>Blue</td>
-							<td>Published <br> 09/01/2026 at 3:34 pm</td>
+							<td><span th:text="${product.status.name}"></span> <br> 
+								<span th:text="${#temporals.format(product.updatedOn, 'MM/dd/yyyy ''at'' h:mm a')}">
+								</span>
+							</td>
                         </tr>
                         <tr>
                             <th>img</th>
@@ -65,7 +68,15 @@
                         
                         </tbody>
                     </table>
+                    
+                    <div class="col-md-12 m-2 d-flex justify-content-end">
+						<nav aria-label="Pagination" th:replace="~{ includes/nav-paging :: nav-paging}"></nav>
+					</div>
+                    
                     </div>
+                    
+                    
+                    
                 </div>
             </div>
         	</div>

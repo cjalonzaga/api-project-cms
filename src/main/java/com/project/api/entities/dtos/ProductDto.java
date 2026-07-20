@@ -1,11 +1,16 @@
 package com.project.api.entities.dtos;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.project.api.entities.ProductCategory;
 import com.project.api.enums.ProductStatus;
 
 public class ProductDto {
+	
+	private LocalDateTime createdOn;
+	
+	private LocalDateTime updatedOn;
 	
 	private Long id;
 	
@@ -76,6 +81,21 @@ public class ProductDto {
 	 public void setDescription(String description) {
 		this.description = description;
 	 }
-	 
-	 
+
+	 public LocalDateTime getUpdatedOn() {
+		return updatedOn;
+	 }
+
+	 public void setUpdatedOn(LocalDateTime updatedOn) {
+		this.updatedOn = updatedOn;
+	 }
+
+	 public LocalDateTime getCreatedOn() {
+		return createdOn;
+	 }
+
+	 public void setCreatedOn(LocalDateTime createdOn) {
+		this.createdOn = createdOn;
+	 }
+
 }

@@ -29,7 +29,17 @@ public class ProductController {
     		@RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size, 
             Model model){
-    	Page<ProductDto> productDtoList = productService.findAllWithPaging(PageRequest.of(page, size));
+    	
+    	int currentPage = page > 0 ? page -1 : page;
+    	Page<ProductDto> productDtoList = productService.findAllWithPaging(PageRequest.of(currentPage, size));
+    	
+		model.addAttribute("currentPage", productDtoList.getNumber() + 1);
+		model.addAttribute("totalItems", productDtoList.getTotalElements());
+     	model.addAttribute("totalPages", productDtoList.getTotalPages());
+     	model.addAttribute("pageSize", size);
+     	
+     	model.addAttribute("target", "/admin/products");
+    	
     	model.addAttribute("productlist" , productDtoList);
     	
         return "manage/products/products";
