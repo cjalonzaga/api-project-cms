@@ -26,7 +26,7 @@
               <label class="form-label">Status</label>
               <select class="form-select" th:field="*{status}">
               	<option th:each="stat : ${productStatusEnum}" 
-			            th:value="stat" 
+			            th:value="${stat}" 
 			            th:text="${stat.name}">
 			    </option>
               </select>
