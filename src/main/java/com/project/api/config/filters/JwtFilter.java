@@ -76,6 +76,6 @@ public class JwtFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException{
         boolean isRequestAllowed = request.getRequestURI().startsWith("/api/auth");
         String path = request.getServletPath();
-        return  request.getRequestURI().startsWith("/api/auth") || request.getRequestURI().startsWith("/api/user/signup");
+        return  request.getRequestURI().startsWith("/api/auth") || request.getRequestURI().startsWith("/api/user/signup") || request.getRequestURI().startsWith("/api/store/");
     }
 }

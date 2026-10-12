@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class ConfigurationController {
+public class StoreFrontConfigController {
 	
 	@GetMapping("/configuration")
-    public String home(Model model)  {
+    public String home()  {
         return "configuration/configuration";
     }
-
+	
+	
 }
